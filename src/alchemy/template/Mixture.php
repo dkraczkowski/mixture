@@ -58,10 +58,13 @@ class Mixture
         Template::setOption(Template::OPTION_CURRENCY_SUFFIX, $suffix);
     }
 
-    public function __construct($dir = null)
+    public function __construct($dir = null, $cache = false)
     {
         $this->dir = realpath($dir);
-        $this->cache = sys_get_temp_dir();
+
+        if (!$cache) {
+            $this->cache = sys_get_temp_dir();
+        }
     }
 
     public static function addHelper($name, $callable)
